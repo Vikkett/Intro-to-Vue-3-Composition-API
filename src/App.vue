@@ -4,7 +4,7 @@ import socksGreenImage from './assets/images/socks_green.jpeg'
 
 const product = ref('Socks')
 const image = ref(socksGreenImage)
-const inStock = true
+const inStock = ref(false)
   
 const details = ref(['50% cotton', '30% wool', '20% polyester'])
 
@@ -14,31 +14,52 @@ const variants = ref([
 ])
 
 const cart = ref(0)
+
+const addToCart = () => {
+  if (inStock.value) cart.value += 1
+}
 </script>
-  
+
 <template>
   <div class="nav-bar"></div>
   <div class="cart">Cart({{ cart }})</div>
+  
   <div class="product-display">
     <div class="product-container">
+      
       <div class="product-image">    
         <img v-bind:src="image">
       </div>
+      
       <div class="product-info">
         <h1>{{ product }}</h1>
+        
         <p v-if="inStock">In Stock</p>
         <p v-else>Out of Stock</p>
+        
         <ul>
-          <li v-for="detail in details">{{ detail }}</li>
+          <li v-for="detail in details" :key="detail">{{ detail }}</li>
         </ul>
-        <div
-          v-for="variant in variants"
-          :key="variant.id"
-        >
-          {{ variant.color }}
+        
+        <div class="colors">
+          <div
+            v-for="variant in variants"
+            :key="variant.id"
+            :style="{ backgroundColor: variant.color }"
+            class="color-circle"
+          ></div>
         </div>
-        <button class="button">Add to Cart</button>
+        
+        <button
+          :class="['button', !inStock ? 'disabledButton' : '']"
+          :disabled="!inStock"
+          @click="addToCart"
+        >
+          Add to Cart
+        </button>
       </div>
+      
     </div>
   </div>
 </template>
+

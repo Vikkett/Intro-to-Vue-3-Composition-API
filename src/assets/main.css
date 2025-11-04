@@ -32,6 +32,8 @@ body {
   box-shadow: 2px 15px -12px rgba(0, 0, 0, 0.57);
 }
 
+
+/* pour donner les parametres de la circle du couleur */
 .color-circle {
   width: 50px;
   height: 50px;
@@ -41,6 +43,7 @@ body {
 }
 
 
+/* pour montrer que le button est unvaible */
 .disabledButton {
   background-color: #d8d8d8;
   cursor: not-allowed;
@@ -50,10 +53,12 @@ h1 {
   font-size: 50px;
 }
 
+
 h3 {
   font-size: 25px;
 }
 
+/* pour donner un peu de style au image*/
 img {
   border: 2px solid #d8d8d8;
   width: 70%;
